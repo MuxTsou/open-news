@@ -86,3 +86,4 @@ lint/tmp/
 /.idea/.gitignore
 /.idea/.name
 /.idea/misc.xml
+/.idea/compiler.xml
