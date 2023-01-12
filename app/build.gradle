@@ -8,12 +8,12 @@ apply plugin: "realm-android"
 
 android {
     namespace 'ai.nextstop.opennews'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "ai.nextstop.opennews"
-        minSdk 21
-        targetSdk 32
+        minSdk 25
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -47,21 +47,30 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    lintOptions {
+        disable 'ComposableNaming'
+    }
 }
 
 ext {
+    ktx_version = '1.7.0'
+    activity_compose_version = '1.3.1'
+    material3_version = '1.0.1'
     retrofit_version = '2.9.0'
     okhttp3_version = '4.10.0'
+    coil_version = '2.2.2'
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.activity:activity-compose:$activity_compose_version"
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.0.0-alpha02'
+    implementation("androidx.compose.material3:material3:$material3_version")
+    implementation("androidx.compose.material3:material3-window-size-class:$material3_version")
+    implementation 'androidx.wear.compose:compose-material:1.0.0-alpha19'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -75,5 +84,7 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation("io.coil-kt:coil-compose:$coil_version")
 
 }
