@@ -8,5 +8,6 @@ class ApiConfig {
         const val BASE_API_URL = "https://$HOST/$API_VERSION/"
 
         const val LIMIT = 20
+        const val INITIAL_PAGE = 1
     }
 }

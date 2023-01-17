@@ -9,9 +9,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import androidx.work.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -40,5 +44,9 @@ class ArticleViewModel @Inject constructor(
                 .addTag(TopHeadlineWorker.tag)
                 .build()
         WorkManager.getInstance(context).beginUniqueWork(TopHeadlineWorker.tag, ExistingWorkPolicy.REPLACE, workRequest).enqueue()
+    }
+
+    fun getTopHeadLinePagingData(): Flow<PagingData<Article>> {
+        return repository.getTopHeadlinePagingData().cachedIn(viewModelScope)
     }
 }

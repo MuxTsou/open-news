@@ -18,4 +18,5 @@ open class Article : RealmObject() {
     var coverUrl: String? = null
     var publishedAt: Date? = null
     var content: String? = null
+    var page: Int = 0
 }

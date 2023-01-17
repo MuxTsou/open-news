@@ -1,7 +1,6 @@
 package ai.nextstop.opennews
 
-import ai.nextstop.opennews.compose.articles.ArticleList
-import ai.nextstop.opennews.data.remote.ApiConfig
+import ai.nextstop.opennews.compose.articles.ArticlePaging
 import ai.nextstop.opennews.ui.theme.OpenNewsTheme
 import ai.nextstop.opennews.viewmodels.ArticleViewModel
 import android.os.Bundle
@@ -28,6 +27,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             OpenNewsTheme {
                 // A surface container using the 'background' color from the theme
@@ -39,21 +39,24 @@ class MainActivity : ComponentActivity() {
                     var refreshing by remember { mutableStateOf(false) }
                     fun refresh() = refreshScope.launch {
                         refreshing = true
-                        viewModel.fetchTopHeadline(page = 0, pageSize = ApiConfig.LIMIT)
                         delay(1500)
                         refreshing = false
                     }
+
                     val pullRefreshState = rememberPullRefreshState(refreshing, ::refresh)
                     Box(Modifier.pullRefresh(pullRefreshState)) {
-                        ArticleList(viewModel = viewModel, onItemClick = {article->
+                        ArticlePaging(viewModel, onItemClick = { article ->
 
                         })
-                        PullRefreshIndicator(refreshing, pullRefreshState, Modifier.align(Alignment.TopCenter))
+                        PullRefreshIndicator(
+                            refreshing,
+                            pullRefreshState,
+                            Modifier.align(Alignment.TopCenter)
+                        )
                     }
                 }
             }
         }
-        viewModel.fetchTopHeadline(page = 0, pageSize = ApiConfig.LIMIT)
     }
 }
 

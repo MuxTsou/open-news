@@ -77,6 +77,10 @@ ext {
     accompanist_version = '0.23.1'
     landscapist_fresco_version = '2.1.1'
     logger_intercepter_version = '3.1.0'
+    paging_compose_version = '1.0.0-alpha17'
+    paging_version = "3.1.1"
+
+
 }
 
 dependencies {
@@ -101,6 +105,11 @@ dependencies {
     implementation 'androidx.wear.compose:compose-material:1.2.0-alpha01'
     implementation("androidx.compose.material:material:$compose_material_version")
     //accompanist
+
+    //Paging3
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation("androidx.paging:paging-compose:$paging_compose_version")
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

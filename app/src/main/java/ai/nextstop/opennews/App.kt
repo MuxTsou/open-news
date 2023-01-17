@@ -39,6 +39,7 @@ class App : Application(), Configuration.Provider {
         val config = RealmConfiguration.Builder()
             .name("open-news")
             .migration(DatabaseMigration())
+            .allowQueriesOnUiThread(true)
             .build()
         Realm.setDefaultConfiguration(config)
     }
@@ -62,7 +63,7 @@ class App : Application(), Configuration.Provider {
             .tag("") // To replace the default PRETTY_LOGGER tag with a dash (-).
             .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
-        if(BuildConfig.DEBUG) {
+//        if(BuildConfig.DEBUG) {
             Timber.plant(object : Timber.DebugTree() {
                 override fun log(
                     priority: Int, tag: String?, message: String, t: Throwable?
@@ -70,7 +71,7 @@ class App : Application(), Configuration.Provider {
                     Logger.log(priority, "-$tag", message, t)
                 }
             })
-        }
+//        }
 
     }
 }
