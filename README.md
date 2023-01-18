@@ -1,7 +1,7 @@
 # Open News #
 Build an AAC(Android Architecture Components) App from scratch.
 
-##Feature ##
+## Feature ##
 * Android Compose
 * Retrofit
 * Realm
