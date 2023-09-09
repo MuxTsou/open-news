@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 
 class ConnectivityLiveData(val context: Context) : LiveData<ConnectionState>() {
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
