@@ -34,9 +34,7 @@ fun ArticleList(viewModel: ArticleViewModel, onItemClick: (article: Article) -> 
 
         }
         items(articles) { article ->
-            article?.let {
-                ArticleCard(article = article, onClick = { }, modifier = itemModifier)
-            }
+            ArticleCard(article = article, onClick = { }, modifier = itemModifier)
 
         }
     }

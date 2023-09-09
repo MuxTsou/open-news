@@ -11,8 +11,6 @@ class ArticleDao : Dao<Article>(Article::class.java){
     fun findPage(page: Int, limit: Long = ApiConfig.LIMIT.toLong()) : RealmResults<Article>{
         try {
             val realm = Realm.getDefaultInstance()
-            val all = realm.where(Article::class.java)
-                .findAll()
             val results = realm.where(Article::class.java)
                 .equalTo("page", page)
                 .findAll()
